@@ -18,12 +18,12 @@ class Test01Seeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin01',
             'password' => Hash::make('abc1234'),
-            'email' => 'ejemplo@ejemplo.com',
+            'email' => 'facundo@cafeandocomo.ninja', //estará confirmado, listo para usar
         ],
         [
             'name' => 'admin02',
             'password' => Hash::make('abc1234'),
-            'email' => 'ejemplo2@ejemplo.com',
+            'email' => 'ejemplo2@ejemplo.com', //Le faltará confirmación
         ]);
     }
 }
