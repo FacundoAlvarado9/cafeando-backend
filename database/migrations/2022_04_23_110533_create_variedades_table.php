@@ -18,6 +18,12 @@ class CreateVariedadesTable extends Migration
             $table->string('nombre', 100);
             $table->text('descripcion');
             $table->text('url');
+            $table->text('external_img_url');
+            $table->timestamp('published_at')->nullable();
+
+            $table->unsignedBigInteger('tipo');
+            $table->foreign('tipo')->references('id')->on('tipos');
+            
             $table->unsignedBigInteger('tostaduria');
             $table->foreign('tostaduria')->references('id')->on('tostadurias');
         });

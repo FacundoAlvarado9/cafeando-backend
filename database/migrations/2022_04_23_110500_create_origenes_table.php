@@ -16,7 +16,7 @@ class CreateOrigenesTable extends Migration
         Schema::create('origenes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->text('descripcion');
+            $table->text('descripcion', 50);
         });
     }
 

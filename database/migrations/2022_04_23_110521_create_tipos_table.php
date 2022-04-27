@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsToVariedades extends Migration
+class CreateTiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTimestampsToVariedades extends Migration
      */
     public function up()
     {
-        Schema::table('variedades', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('tipos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 50);
         });
     }
 
@@ -25,8 +26,6 @@ class AddTimestampsToVariedades extends Migration
      */
     public function down()
     {
-        Schema::table('variedades', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tipos');
     }
 }
