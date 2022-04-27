@@ -9,6 +9,7 @@ class Ciudad extends Model
 {
     use HasFactory;
 
+    protected $table = 'ciudades';
     protected $primaryKey = 'cod_postal';
     public $incrementing = false;
 }
