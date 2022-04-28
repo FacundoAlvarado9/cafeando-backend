@@ -21,11 +21,8 @@ class CreateVariedadesTable extends Migration
             $table->text('external_img_url');
             $table->timestamp('published_at')->nullable();
 
-            $table->unsignedBigInteger('tipo');
-            $table->foreign('tipo')->references('id')->on('tipos');
-            
-            $table->unsignedBigInteger('tostaduria');
-            $table->foreign('tostaduria')->references('id')->on('tostadurias');
+            $table->foreignId('tipo_id')->constrained();
+            $table->foreignId('tostaduria_id')->constrained();
         });
     }
 
