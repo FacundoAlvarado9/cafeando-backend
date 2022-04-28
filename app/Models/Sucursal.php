@@ -9,4 +9,13 @@ class Sucursal extends Model
 {
     use HasFactory;
     protected $table = 'sucursales';
+    public $timestamps = false;
+
+    public function tostaduria(){
+        return $this->belongsTo(Tostaduria::class);
+    }
+
+    public function ciudad(){
+        return $this->belongsTo(Ciudad::class, 'ciudad_cp', 'cod_postal');
+    }
 }

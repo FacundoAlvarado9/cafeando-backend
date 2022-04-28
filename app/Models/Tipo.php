@@ -9,4 +9,10 @@ class Tipo extends Model
 {
     use HasFactory;
     protected $table = 'tipos';
+    public $timestamps = false;
+
+    public function variedades(){
+        return $this->hasMany(Variedad::class);
+    }
+
 }
