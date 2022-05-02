@@ -1,0 +1,31 @@
+.header{
+    background-color: #BF784E;
+    margin-bottom: 1em;
+}
+
+.marca{
+    font-size: 1.5rem;
+}
+
+.buscar{
+    margin-bottom: 1rem;
+}
+
+.navbar-brand{
+    font-family: 'DM Serif Display', serif;    
+}
+
+.card {
+    margin: 1em;
+}
+
+.card-title{
+    font-size: 1.5em;
+    font-family: 'DM Serif Display', serif;
+    text-decoration: none;
+    color: black;
+}
+
+.btn{
+    margin: 0.2em;
+}
