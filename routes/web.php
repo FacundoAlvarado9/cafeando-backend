@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VariedadController;
+use App\Http\Controllers\TostaduriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('variedades', VariedadController::class);
+Route::resource('tostadurias', TostaduriaController::class);
 
 require __DIR__.'/auth.php';
