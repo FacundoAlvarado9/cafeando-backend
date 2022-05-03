@@ -50,6 +50,10 @@
   </div>
 </div>
 
+<div class="row">
+  {{ $tostadurias->links() }}
+</div>
+
 </div>
 
 @endsection
