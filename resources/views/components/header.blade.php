@@ -8,30 +8,32 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Variedades</a>
+          <a class="nav-link active" aria-current="page" href="/variedades">Variedades</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/tostadurias">Tostadurias</a>          
+          <a class="nav-link" href="/tostadurias">Tostadurias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/origenes">Orígenes</a>          
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" href="/origenes">Orígenes</a>
         </li>
       </ul>
-      
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" style="margin-right: 1em;">
+          <a style="color:white;">Logueado como: <i>{{ Auth::user()->name }}</i> </a>
+        </li>
+
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+              @csrf
+
+              <a href="route('logout')" style="color: white;" onclick="event.preventDefault(); this.closest('form').submit();">
+                  {{ __('Log Out') }}
+              </a>
+          </form>
+        </li>
+      </ul>
+
     </div>
   </div>
 </nav>

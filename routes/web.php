@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VariedadController;
 use App\Http\Controllers\TostaduriaController;
+use App\Http\Controllers\OrigenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('variedades', VariedadController::class);
-Route::resource('tostadurias', TostaduriaController::class);
+Route::middleware(['auth'])->group(function () {
+  Route::resource('variedades', VariedadController::class);
+  Route::resource('tostadurias', TostaduriaController::class);
+  Route::resource('origenes', OrigenController::class);
+});
 
 require __DIR__.'/auth.php';
