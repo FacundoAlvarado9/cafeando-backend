@@ -14,4 +14,11 @@ class Origen extends Model
     public function variedades(){
         return $this->belongsToMany(Variedad::class, 'variedad_origen');
     }
+
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['search'])){
+            $query->where('nombre', 'ilike', '%'.$filters['search'].'%')
+                      ->orWhere('descripcion', 'ilike', '%'.$filters['search'].'%');
+        }
+    }
 }
