@@ -17,7 +17,7 @@ use App\Http\Controllers\OrigenController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('variedades.index');
 });
 
 Route::get('/dashboard', function () {
