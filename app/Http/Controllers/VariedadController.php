@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Variedad;
 
-use App\Models\Origen;
-
 class VariedadController extends Controller
 {
     /**
@@ -15,8 +13,8 @@ class VariedadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
-        $variedades = Variedad::filter(request(['search', 'origen', 'tostaduria']))->paginate(3)->withQueryString();
+    {
+        $variedades = Variedad::filter(request(['search','tipo', 'origen', 'tostaduria']))->paginate(3)->withQueryString();
         return view('variedad.index', [
             'variedades'=>$variedades
         ]);

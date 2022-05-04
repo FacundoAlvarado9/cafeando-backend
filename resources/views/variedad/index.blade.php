@@ -22,6 +22,10 @@
         @if(request('tostaduria'))
         <input type="hidden" name="tostaduria" value="{{request('tostaduria')}}">
         @endif
+
+        @if(request('tipo'))
+        <input type="hidden" name="tipo" value="{{request('tipo')}}">
+        @endif
         <input type="text" name="search" placeholder="Buscar" class="form-control" value="{{request('search')}}">
       </form>
     </div>
@@ -30,6 +34,10 @@
 
 <div class="container">
   <div class="row row-cols-auto">
+
+    <div class="col">
+      <x-variedad.filter-tipo-dropdown/>
+    </div>
 
     <div class="col">
       <x-variedad.filter-origen-dropdown/>

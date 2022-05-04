@@ -12,7 +12,7 @@ class Variedad extends Model
 
     const CREATED_AT = 'published_at';
 
-    protected $table = 'variedades';    
+    protected $table = 'variedades';
 
     public function tipo(){
         return $this->belongsTo(Tipo::class);
@@ -27,19 +27,26 @@ class Variedad extends Model
     }
 
     public function scopeFilter($query, array $filters){
-        if(isset($filters['search'])){            
+        if(isset($filters['search'])){
             $query->where('nombre', 'ilike', '%'.$filters['search'].'%');
         }
 
-        if(isset($filters['origen'])){   
-            //$query->where('nombre', 'ilike', '%topazio%');         
+        if(isset($filters['tipo'])){
+            //$query->where('nombre', 'ilike', '%topazio%');
+             $query->whereHas('tipo', function (Builder $query) use($filters){
+                $query->where('nombre', 'ilike', $filters['tipo']);
+            });
+        }
+
+        if(isset($filters['origen'])){
+            //$query->where('nombre', 'ilike', '%topazio%');
              $query->whereHas('origenes', function (Builder $query) use($filters){
                 $query->where('nombre', 'ilike', $filters['origen']);
             });
         }
 
-        if(isset($filters['tostaduria'])){   
-            //$query->where('nombre', 'ilike', '%topazio%');         
+        if(isset($filters['tostaduria'])){
+            //$query->where('nombre', 'ilike', '%topazio%');
              $query->whereHas('tostaduria', function (Builder $query) use($filters){
                 $query->where('nombre', 'ilike', $filters['tostaduria']);
             });
