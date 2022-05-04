@@ -9,9 +9,9 @@
     @endempty
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-  <li><a class="dropdown-item" href="/tostadurias/?{{ http_build_query(request()->except('presente-en', 'page')) }}">Todos</a></li>
+  <li><a class="dropdown-item" href="{{ route('tostadurias.index').'?'.http_build_query(request()->except('presente-en', 'page')) }}">Todos</a></li>
       @foreach($ciudades as $ciudad)
-      <li><a class="dropdown-item" href="/tostadurias/?presente-en={{ $ciudad->nombre }}&{{ http_build_query(request()->except('presente-en', 'page')) }}">{{ $ciudad->nombre }}</a></li>
+      <li><a class="dropdown-item" href="{{ route('tostadurias.index').'?presente-en='.$ciudad->nombre.'&'.http_build_query(request()->except('presente-en', 'page')) }}">{{ $ciudad->nombre }}</a></li>
       @endforeach
   </ul>
 </div>

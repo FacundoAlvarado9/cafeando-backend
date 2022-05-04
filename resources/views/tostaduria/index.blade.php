@@ -16,6 +16,11 @@
 
     <div class="col buscar ">
       <form action="" method="get">
+
+        @if(request('presente-en'))
+        <input type="hidden" name="presente-en" value="{{ request('presente-en') }}">
+        @endif
+
         <input type="text" name="search" placeholder="Buscar" class="form-control" value="{{request('search')}}">
       </form>
     </div>
@@ -31,7 +36,7 @@
     </div>
 
     <div class="col">
-      <a class="btn btn-primary" href="/tostadurias" role="button">Resetear filtros</a>
+      <a class="btn btn-primary" href="{{ route('tostadurias.index') }}" role="button">Resetear filtros</a>
     </div>
 
   </div>

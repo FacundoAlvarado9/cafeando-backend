@@ -8,7 +8,7 @@
     <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/origenes">Orígenes</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('origenes.index') }}">Orígenes</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$origen->nombre}}</li>
           </ol>
         </nav>

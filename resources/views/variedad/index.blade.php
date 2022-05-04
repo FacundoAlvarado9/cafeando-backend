@@ -48,7 +48,7 @@
     </div>
 
     <div class="col">
-      <a class="btn btn-primary" href="/variedades" role="button">Resetear filtros</a>
+      <a class="btn btn-primary" href="{{ route('variedades.index') }}" role="button">Resetear filtros</a>
     </div>
 
   </div>
