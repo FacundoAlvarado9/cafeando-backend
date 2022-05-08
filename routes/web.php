@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VariedadController;
+use App\Http\Controllers\TostaduriaController;
+use App\Http\Controllers\OrigenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('variedades.index');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+  Route::resource('variedades', VariedadController::class);
+  Route::resource('tostadurias', TostaduriaController::class);
+  Route::resource('origenes', OrigenController::class);
+});
 
 require __DIR__.'/auth.php';
