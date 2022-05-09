@@ -22,7 +22,7 @@ class CreateVariedadesTable extends Migration
             $table->timestamp('published_at')->nullable();
 
             $table->foreignId('tipo_id')->constrained();
-            $table->foreignId('tostaduria_id')->constrained();
+            $table->foreignId('tostaduria_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

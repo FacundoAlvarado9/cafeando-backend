@@ -14,6 +14,8 @@
         </nav>
     </div>
 
+<x-status-message />
+
 
 <div class="container">
   <div class="row">
@@ -21,8 +23,24 @@
       <h2>{{ $tostaduria->nombre }}</h2>
     </div>
     <div class="col">
-      <a href="#" class="btn btn-warning disabled">Editar</a>
-      <a href="#" class="btn btn-danger disabled">Eliminar</a>
+      <div class="row">
+
+        <div class="col-sm-4 col-md-2">
+          <a href="{{ route('tostadurias.edit', $tostaduria->id) }}" class="btn btn-warning">Editar</a>
+        </div>
+
+        <div class="col-sm-4 col-md-2">
+          <form action="{{ route('tostadurias.destroy', $tostaduria->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+
+              <button class="btn btn-danger">Eliminar</button>
+
+          </form>
+        </div>
+
+      </div>
+
     </div>
   </div>
 

@@ -28,6 +28,8 @@
   </div>
 </div>
 
+  <x-status-message />
+
 
   <div class="row row-cols-auto">
 
@@ -51,7 +53,7 @@
 
 <div class="row">
   <div class="col">
-    <a class="btn btn-info disabled" href="#" role="button">Agregar tostaduria</a>
+    <a class="btn btn-info" href="{{ route('tostadurias.create') }}" role="button">Agregar tostaduria</a>
   </div>
 </div>
 
