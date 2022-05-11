@@ -64,6 +64,12 @@
     </div>
 </div>
 
+<div class="row" style="margin-bottom: 1em;">
+  <div class="col">
+    <a class="btn btn-info" href="{{ route('variedades.create') }}" role="button">Agregar variedad</a>
+  </div>
+</div>
+
 {{ $variedades->links() }}
 
 @endsection

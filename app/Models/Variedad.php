@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 class Variedad extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
+    public $timestamps = false;
     const CREATED_AT = 'published_at';
 
     protected $table = 'variedades';

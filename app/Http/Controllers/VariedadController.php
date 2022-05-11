@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Variedad;
+use App\Rules\ArrayAtLeastOneRequired;
+use Illuminate\Validation\Rule;
 
 class VariedadController extends Controller
 {
@@ -27,7 +29,7 @@ class VariedadController extends Controller
      */
     public function create()
     {
-        //
+        return view('variedad.create');
     }
 
     /**
@@ -38,7 +40,21 @@ class VariedadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $atributos = $request->validate([
+        'nombre' => ['required', Rule::unique('variedades', 'nombre')],
+        'descripcion' => 'required',
+        'tipo_id' => ['required', Rule::exists('tipos', 'id')],
+        'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
+        'url' => 'required'
+      ]);
+
+      $origenes = $request->validate(['origenes'=>'array|required|min:1']);
+
+      $nuevaVariedad = Variedad::create($atributos);
+      $nuevaVariedad->origenes()->attach($origenes["origenes"]);
+
+      return redirect(route('variedades.show', $nuevaVariedad->id))->with('status', 'Variedad creada con éxito');
     }
 
     /**

@@ -13,9 +13,9 @@ class TostaduriasSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         DB::table('tostadurias')->insert([
-            [                
+            [
                 'nombre'=>'Coffee Tiger Co.',
             ],
             [

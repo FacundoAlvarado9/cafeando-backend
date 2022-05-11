@@ -9,6 +9,8 @@
   </ol>
 </nav>
 
+<x-status-message />
+
 <div class="container">
   <div class="row">
       <div class="col-md">
