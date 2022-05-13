@@ -1,9 +1,18 @@
 <div class="border rounded" style="padding: 1em;">
-  <label for="tipo_id" class="form-label"><b>Origen</b></label>
+  <label for="origenes" class="form-label"><b>Origen</b></label>
+
+  @if ($attributes->has('variedad'))
+    {{ dd($attributes->get('variedad')) }}
+  @endif
 
   <div class="overflow-auto" style="max-height: 7em;">
+
     @foreach ($origenes as $origen)
-      <input type="checkbox" name="origenes[]" value="{{ $origen->id }}"> {{ $origen->nombre }} <br/>
+      <input type="checkbox" name="origenes[]" value="{{ $origen->id }}"
+      @if(((is_array(old('origenes')) and in_array($origen->id, old('origenes')))) or (isset($variedad) and (in_array($origen->id, $variedad->origenes->modelKeys()))) )
+        checked
+      @endif
+      > {{ $origen->nombre }} <br/>
     @endforeach
   </div>
 

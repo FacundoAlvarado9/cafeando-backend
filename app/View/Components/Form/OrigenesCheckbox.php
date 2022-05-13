@@ -7,14 +7,20 @@ use App\Models\Origen;
 
 class OrigenesCheckbox extends Component
 {
+
+    public $variedad;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($variedad = NULL)
     {
-        //
+        $this->variedad = $variedad;
+    }
+
+    public function esEdicion(){
+      return isset($variedad);
     }
 
     /**
