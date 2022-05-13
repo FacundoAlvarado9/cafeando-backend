@@ -46,10 +46,13 @@ class VariedadController extends Controller
         'descripcion' => 'required',
         'tipo_id' => ['required', Rule::exists('tipos', 'id')],
         'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
-        'url' => 'required'
+        'url' => ['required', Rule::unique('variedades', 'url')]
       ]);
 
-      $origenes = $request->validate(['origenes'=>'array|required|min:1']);
+      $origenes = $request->validate([
+        'origenes'=>'array|required|min:1', //Tiene al menos uno seleccionado
+        'origenes.*' => [Rule::exists('origenes', 'id')] //Existe
+      ]);
 
       $nuevaVariedad = Variedad::create($atributos);
       $nuevaVariedad->origenes()->attach($origenes["origenes"]);
@@ -77,7 +80,7 @@ class VariedadController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('variedad.edit', ['variedad' => Variedad::findOrFail($id)]);
     }
 
     /**
@@ -89,7 +92,25 @@ class VariedadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $atributos = request()->validate([
+        'nombre' => ['required', Rule::unique('variedades', 'nombre')->ignore($id)],
+        'descripcion' => 'required',
+        'tipo_id' => ['required', Rule::exists('tipos', 'id')],
+        'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
+        'url' => ['required', Rule::unique('variedades', 'url')->ignore($id)]
+      ]);
+
+      $nuevosOrigenes = $request->validate([
+        'origenes'=>'array|required|min:1', //Tiene al menos uno seleccionado
+        'origenes.*' => [Rule::exists('origenes', 'id')] //Existe
+      ]);
+
+      $variedadAEditar = Variedad::findOrFail($id);
+      $variedadAEditar->update($atributos);
+
+      $variedadAEditar->origenes()->sync($nuevosOrigenes["origenes"]);
+
+      return redirect(route('variedades.show', $variedadAEditar->id))->with('status', 'Variedad editada con éxito');
     }
 
     /**
