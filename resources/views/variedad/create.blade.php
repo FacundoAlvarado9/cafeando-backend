@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-      <x-form.textarea nombre="descripcion"/>
+      <x-form.textarea nombre="descripcion">{{ old('descripcion') }}</x-form.textarea>
     </div>
 
     <div class="row">
