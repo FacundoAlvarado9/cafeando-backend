@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tostaduria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 
 class TostaduriaController extends Controller
@@ -45,7 +46,7 @@ class TostaduriaController extends Controller
 
         $nuevaTostaduria = Tostaduria::create($atributos);
 
-        return redirect(route('tostadurias.index')."/".$nuevaTostaduria->id)->with('status', 'Tostaduria creada con éxito');
+        return Redirect::route('tostadurias.show', $nuevaTostaduria->id)->with('status', 'Tostaduria creada con éxito');
     }
 
     /**
@@ -88,7 +89,7 @@ class TostaduriaController extends Controller
 
         $tostaduriaAEditar->update($atributos);
 
-        return redirect(route('tostadurias.show', $tostaduriaAEditar->id))->with('status', 'Tostaduria editada con éxito');
+        return Redirect::route('tostadurias.show', $tostaduriaAEditar->id)->with('status', 'Tostaduria editada con éxito');
     }
 
     /**
@@ -103,6 +104,6 @@ class TostaduriaController extends Controller
 
         $tostaduriaAEliminar->delete();
 
-        return redirect(route('tostadurias.index'))->with('status', 'Tostaduria '.$tostaduriaAEliminar->nombre.' eliminada con éxito');
+        return Redirect::route('tostadurias.index')->with('status', 'Tostaduria '.$tostaduriaAEliminar->nombre.' eliminada con éxito');
     }
 }
