@@ -19,10 +19,6 @@ class OrigenesCheckbox extends Component
         $this->variedad = $variedad;
     }
 
-    public function esEdicion(){
-      return isset($variedad);
-    }
-
     /**
      * Get the view / contents that represent the component.
      *

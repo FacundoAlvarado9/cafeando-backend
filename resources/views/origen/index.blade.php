@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="container">
   <div class="row">
 
@@ -22,6 +21,8 @@
 
   </div>
 
+  <x-status-message />
+
   <div class="row">
     <div class="accordion">
       @foreach($origenes as $origen)
@@ -32,7 +33,7 @@
 
   <div class="row">
     <div class="col">
-      <a class="btn btn-info disabled" href="#" role="button">Agregar origen</a>
+      <a class="btn btn-info" href="{{ route('origenes.create') }}" role="button">Agregar origen</a>
     </div>
   </div>
 

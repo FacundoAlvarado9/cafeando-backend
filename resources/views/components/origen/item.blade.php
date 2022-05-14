@@ -9,7 +9,7 @@
         <x-boton-editar :rutaEdit="route('origenes.edit', $origen->id)" />
       </div>
       <div class="col-4 col-md-2 col-lg-1">
-        <x-form.boton-eliminar :action="route('origenes.destroy', $origen->id)"/>
+        <x-form.boton-eliminar :action="route('origenes.destroy', $origen->id)" idModal="{{ $origen->id }}" mensaje="Eliminarás el origen y todas las variedades asociadas."/>
       </div>
     </div>
   </div>
