@@ -1,10 +1,6 @@
 <div class="border rounded" style="padding: 1em;">
   <label for="origenes" class="form-label"><b>Origen</b></label>
 
-  @if ($attributes->has('variedad'))
-    {{ dd($attributes->get('variedad')) }}
-  @endif
-
   <div class="overflow-auto" style="max-height: 7em;">
 
     @foreach ($origenes as $origen)

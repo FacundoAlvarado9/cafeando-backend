@@ -7,15 +7,16 @@ use App\Models\Tostaduria;
 
 class TostaduriaDropdown extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+  public $variedad;
+  /**
+   * Create a new component instance.
+   *
+   * @return void
+   */
+  public function __construct($variedad = NULL)
+  {
+      $this->variedad = $variedad;
+  }
 
     /**
      * Get the view / contents that represent the component.
