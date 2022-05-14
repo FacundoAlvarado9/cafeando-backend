@@ -4,7 +4,7 @@
 
 <h2>Editar variedad: {{ $variedad->nombre }}</h2>
 
-<form class="" action="{{ route('variedades.update', $variedad->id) }}" method="post">
+<form class="" action="{{ route('variedades.update', $variedad->id) }}" method="post" enctype="multipart/form-data">
   @csrf
   @method('PATCH')
 
@@ -15,6 +15,14 @@
 
     <div class="row">
       <x-form.textarea nombre="descripcion">{{ old('descripcion', $variedad->descripcion) }}</x-form.textarea>
+    </div>
+
+    <div class="row mb-3">
+      <div>
+          <p>Imagen actual: </p>
+          <img src="{{ $variedad->imagen_url }}" alt="Imagen actual" style="width: 10em;">
+      </div>
+      <x-form.input nombre="imagen" type="file" :value="old('imagen', $variedad->imagen)"/>
     </div>
 
     <div class="row">

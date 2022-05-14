@@ -19,6 +19,7 @@ class CreateVariedadesTable extends Migration
             $table->text('descripcion');
             $table->text('url');
             $table->text('imagen')->nullable();
+            $table->text('imagen_url')->nullable();
             $table->timestamp('published_at')->nullable();
 
             $table->foreignId('tipo_id')->constrained()->onUpdate('cascade')->onDelete('cascade');

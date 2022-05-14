@@ -46,9 +46,11 @@ class VariedadController extends Controller
       $origenesArreglo = $request->safe()->only(['origenes']);
 
       $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
-      $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda"
+      $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
 
-      $atributos['imagen'] = $urlImagen; //La añadimos a los atributos
+      //Me quedo con ambas
+      $atributos['imagen'] = $pathImagen;
+      $atributos['imagen_url'] = $urlImagen;
 
       $nuevaVariedad = Variedad::create($atributos);
       $nuevaVariedad->origenes()->attach($origenesArreglo["origenes"]);
@@ -91,6 +93,15 @@ class VariedadController extends Controller
       $atributos = $request->safe()->except(['origenes', 'origenes.*']);
       $nuevosOrigenes = $request->safe()->only(['origenes']);
 
+      if(isset($atributos['imagen'])){
+        $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
+        $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
+
+        //Me quedo con ambas
+        $atributos['imagen'] = $pathImagen;
+        $atributos['imagen_url'] = $urlImagen;
+      }
+
       $variedadAEditar = Variedad::findOrFail($id);
       $variedadAEditar->update($atributos);
 
@@ -110,6 +121,9 @@ class VariedadController extends Controller
         $variedadAEliminar = Variedad::findOrFail($id);
 
         $variedadAEliminar->origenes()->detach();
+        if(isset($variedadAEliminar->imagen)){
+          Storage::delete($variedadAEliminar->imagen);
+        }
         $variedadAEliminar->delete();
 
         return Redirect::route('variedades.index')->with('status', 'Variedad'.$variedadAEliminar->nombre.' eliminada con éxito');

@@ -17,8 +17,8 @@
     </div>
 
     <div class="row mb-3">
-      <label for="imagen">Imagen</label>
-      <input type="file" name="imagen" value="">
+      <x-form.input nombre="imagen" type="file" />
+
     </div>
 
     <div class="row">

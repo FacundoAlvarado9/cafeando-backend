@@ -28,7 +28,7 @@ class StoreUpdateVariedadRequest extends FormRequest
         return [
           'nombre' => ['required', Rule::unique('variedades', 'nombre')->ignore($this->route('variedade'))],
           'descripcion' => 'required',
-          'imagen' => 'required|image',
+          'imagen' => 'image',
           'tipo_id' => ['required', Rule::exists('tipos', 'id')],
           'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
           'url' => ['required', Rule::unique('variedades', 'url')->ignore($this->route('variedade'))],

@@ -1,7 +1,7 @@
 @props(['variedad'])
 
 <div class="card" style="width: 18rem;">
-    <img src="{{ $variedad->imagen }}" class="card-img-top" alt="...">
+    <img src="{{ $variedad->imagen_url }}" class="card-img-top" alt="...">
     <div class="card-body">
         <x-origen.clickable-badges :origenes="$variedad->origenes"/>
         <a class="card-title" href ="{{ route('variedades.show', $variedad->id) }}">{{ $variedad->nombre }}</a>
