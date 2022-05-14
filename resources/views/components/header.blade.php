@@ -8,16 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('variedades.index') }}">Variedades</a>
+          <a class="nav-link {{ request()->routeIs('variedades.*') ? 'active' : '' }}" aria-current="page" href="{{ route('variedades.index') }}">Variedades</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('tostadurias.index') }}">Tostadurias</a>
+          <a class="nav-link {{ request()->routeIs('tostadurias.*') ? 'active' : '' }}" href="{{ route('tostadurias.index') }}">Tostadurias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('origenes.index') }}">Orígenes</a>
+          <a class="nav-link {{ request()->routeIs('origenes.*') ? 'active' : '' }}" href="{{ route('origenes.index') }}">Orígenes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('ciudades.index') }}">Ciudades</a>
+          <a class="nav-link {{ request()->routeIs('ciudades.*') ? 'active' : '' }}" href="{{ route('ciudades.index') }}">Ciudades</a>
         </li>
       </ul>
 
