@@ -14,7 +14,7 @@
 <div class="container">
   <div class="row">
       <div class="col-md">
-          <img src="{{ $variedad->external_img_url }}" class="img-fluid border" alt="...">
+          <img src="{{ $variedad->imagen }}" class="img-fluid border" alt="...">
       </div>
       <div class="col-md">
           <h1>{{ $variedad->nombre }}</h1>

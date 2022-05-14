@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Variedad;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreUpdateVariedadRequest;
+use Illuminate\Support\Facades\Storage;
 
 class VariedadController extends Controller
 {
@@ -40,11 +41,17 @@ class VariedadController extends Controller
      */
     public function store(StoreUpdateVariedadRequest $request)
     {
+
       $atributos = $request->safe()->except(['origenes', 'origenes.*']);
-      $origenes = $request->safe()->only(['origenes']);
+      $origenesArreglo = $request->safe()->only(['origenes']);
+
+      $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
+      $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda"
+
+      $atributos['imagen'] = $urlImagen; //La añadimos a los atributos
 
       $nuevaVariedad = Variedad::create($atributos);
-      $nuevaVariedad->origenes()->attach($origenes["origenes"]);
+      $nuevaVariedad->origenes()->attach($origenesArreglo["origenes"]);
 
       return Redirect::route('variedades.show', $nuevaVariedad->id)->with('status', 'Variedad creada con éxito');
     }

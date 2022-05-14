@@ -4,7 +4,7 @@
 
 <h2>Agregar una variedad</h2>
 
-<form class="" action="{{route('variedades.store')}}" method="post">
+<form class="" action="{{route('variedades.store')}}" method="post" enctype="multipart/form-data">
   @csrf
 
   <div class="container">
@@ -14,6 +14,11 @@
 
     <div class="row">
       <x-form.textarea nombre="descripcion">{{ old('descripcion') }}</x-form.textarea>
+    </div>
+
+    <div class="row mb-3">
+      <label for="imagen">Imagen</label>
+      <input type="file" name="imagen" value="">
     </div>
 
     <div class="row">
