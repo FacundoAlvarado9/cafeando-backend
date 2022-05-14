@@ -29,8 +29,8 @@
 
 
       <div class="col-sm">
-        <x-form.tipo-dropdown />
-        <x-form.tostaduria-dropdown/>
+        <x-form.tipo-dropdown :variedad="$variedad"/>
+        <x-form.tostaduria-dropdown :variedad="$variedad"/>
       </div>
 
 

@@ -13,9 +13,9 @@
             <x-boton-editar :rutaEdit="route('variedades.edit', $variedad->id)" />
           </div>
           <div class="col-4  col-md-4 col-lg-4">
-            <x-form.boton-eliminar :action="route('variedades.destroy', $variedad->id)"/>
+            <x-form.boton-eliminar :action="route('variedades.destroy', $variedad->id)" idModal="{{$variedad->id}}"/>
           </div>
         </div>
-        
+
     </div>
 </div>

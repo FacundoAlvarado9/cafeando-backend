@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-sm-4 col-md-2">
-          <x-form.boton-eliminar :action="route('tostadurias.destroy', $tostaduria->id)"/>
+          <x-form.boton-eliminar :action="route('tostadurias.destroy', $tostaduria->id)" mensaje="Eliminarás la tostaduría y todas sus variedades asociadas"/>
         </div>
 
       </div>
