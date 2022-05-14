@@ -26,17 +26,11 @@
       <div class="row">
 
         <div class="col-sm-4 col-md-2">
-          <a href="{{ route('tostadurias.edit', $tostaduria->id) }}" class="btn btn-warning">Editar</a>
+          <x-boton-editar rutaEdit="{{ route('tostadurias.edit', $tostaduria->id) }}" />
         </div>
 
         <div class="col-sm-4 col-md-2">
-          <form action="{{ route('tostadurias.destroy', $tostaduria->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-
-              <button class="btn btn-danger">Eliminar</button>
-
-          </form>
+          <x-form.boton-eliminar :action="route('tostadurias.destroy', $tostaduria->id)"/>
         </div>
 
       </div>
@@ -60,7 +54,7 @@
 
   <div class="row">
     <div class="col">
-      <a class="btn btn-info disabled" href="#" role="button">Agregar sucursal</a>
+      <a class="btn btn-info" href="{{ route('sucursales.create') }}" role="button">Agregar sucursal</a>
     </div>
   </div>
 

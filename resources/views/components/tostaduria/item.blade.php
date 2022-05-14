@@ -8,17 +8,11 @@
       </div>
 
       <div class="col-sm-2 col-lg-1">
-        <a href="{{ route('tostadurias.edit', $tostaduria->id) }}" class="btn btn-warning">Editar</a>
+        <x-boton-editar rutaEdit="{{ route('tostadurias.edit', $tostaduria->id) }}" />
       </div>
 
       <div class="col-sm-3">
-        <form action="{{ route('tostadurias.destroy', $tostaduria->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-
-            <button class="btn btn-danger">Eliminar</button>
-
-        </form>
+        <x-form.boton-eliminar :action="route('tostadurias.destroy', $tostaduria->id)"/>
       </div>
     </div>
 
