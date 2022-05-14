@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Variedad;
-use App\Rules\ArrayAtLeastOneRequired;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\StoreUpdateVariedadRequest;
 
 class VariedadController extends Controller
 {
@@ -38,26 +38,15 @@ class VariedadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateVariedadRequest $request)
     {
-
-      $atributos = $request->validate([
-        'nombre' => ['required', Rule::unique('variedades', 'nombre')],
-        'descripcion' => 'required',
-        'tipo_id' => ['required', Rule::exists('tipos', 'id')],
-        'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
-        'url' => ['required', Rule::unique('variedades', 'url')]
-      ]);
-
-      $origenes = $request->validate([
-        'origenes'=>'array|required|min:1', //Tiene al menos uno seleccionado
-        'origenes.*' => [Rule::exists('origenes', 'id')] //Existe
-      ]);
+      $atributos = $request->safe()->except(['origenes', 'origenes.*']);
+      $origenes = $request->safe()->only(['origenes']);
 
       $nuevaVariedad = Variedad::create($atributos);
       $nuevaVariedad->origenes()->attach($origenes["origenes"]);
 
-      return redirect(route('variedades.show', $nuevaVariedad->id))->with('status', 'Variedad creada con éxito');
+      return Redirect::route('variedades.show', $nuevaVariedad->id)->with('status', 'Variedad creada con éxito');
     }
 
     /**
@@ -90,27 +79,17 @@ class VariedadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateVariedadRequest $request, $id)
     {
-      $atributos = request()->validate([
-        'nombre' => ['required', Rule::unique('variedades', 'nombre')->ignore($id)],
-        'descripcion' => 'required',
-        'tipo_id' => ['required', Rule::exists('tipos', 'id')],
-        'tostaduria_id' => ['required', Rule::exists('tostadurias', 'id')],
-        'url' => ['required', Rule::unique('variedades', 'url')->ignore($id)]
-      ]);
-
-      $nuevosOrigenes = $request->validate([
-        'origenes'=>'array|required|min:1', //Tiene al menos uno seleccionado
-        'origenes.*' => [Rule::exists('origenes', 'id')] //Existe
-      ]);
+      $atributos = $request->safe()->except(['origenes', 'origenes.*']);
+      $nuevosOrigenes = $request->safe()->only(['origenes']);
 
       $variedadAEditar = Variedad::findOrFail($id);
       $variedadAEditar->update($atributos);
 
       $variedadAEditar->origenes()->sync($nuevosOrigenes["origenes"]);
 
-      return redirect(route('variedades.show', $variedadAEditar->id))->with('status', 'Variedad editada con éxito');
+      return Redirect::route('variedades.show', $variedadAEditar->id)->with('status', 'Variedad editada con éxito');
     }
 
     /**
@@ -121,6 +100,11 @@ class VariedadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $variedadAEliminar = Variedad::findOrFail($id);
+
+        $variedadAEliminar->origenes()->detach();
+        $variedadAEliminar->delete();
+
+        return Redirect::route('variedades.index')->with('status', 'Variedad'.$variedadAEliminar->nombre.' eliminada con éxito');
     }
 }
