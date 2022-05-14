@@ -7,20 +7,15 @@
   @csrf
 
   <div class="container">
-    <div class="row">
-      <x-form.input nombre="direccion"/>
-    </div>
-
+    
     <div class="row">
       <div class="col-lg-2">
         <x-form.ciudad-dropdown/>
       </div>
-      <div class="col-lg-2">
-        <p>¿No encontrás la ciudad?</p>
-      </div>
-      <div class="col">
-        <a href="#" class="btn btn-info">Agregar Ciudad</a>
-      </div>
+    </div>
+
+    <div class="row">
+      <x-form.input nombre="direccion"/>
     </div>
 
     <x-form.error-displayer />
