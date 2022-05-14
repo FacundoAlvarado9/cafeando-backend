@@ -45,12 +45,14 @@ class VariedadController extends Controller
       $atributos = $request->safe()->except(['origenes', 'origenes.*']);
       $origenesArreglo = $request->safe()->only(['origenes']);
 
-      $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
-      $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
+      if(isset($atributos['imagen'])){ //No es requerido
+        $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
+        $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
 
-      //Me quedo con ambas
-      $atributos['imagen'] = $pathImagen;
-      $atributos['imagen_url'] = $urlImagen;
+        //Me quedo con ambas
+        $atributos['imagen'] = $pathImagen;
+        $atributos['imagen_url'] = $urlImagen;
+      }
 
       $nuevaVariedad = Variedad::create($atributos);
       $nuevaVariedad->origenes()->attach($origenesArreglo["origenes"]);
@@ -121,9 +123,11 @@ class VariedadController extends Controller
         $variedadAEliminar = Variedad::findOrFail($id);
 
         $variedadAEliminar->origenes()->detach();
-        if(isset($variedadAEliminar->imagen)){
+
+        if(isset($variedadAEliminar->imagen)){ //Las imagenes de variedades cargadas con seed no tendrán asociado path en el filesystem Laravel
           Storage::delete($variedadAEliminar->imagen);
         }
+
         $variedadAEliminar->delete();
 
         return Redirect::route('variedades.index')->with('status', 'Variedad'.$variedadAEliminar->nombre.' eliminada con éxito');
