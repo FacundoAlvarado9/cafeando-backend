@@ -16,9 +16,9 @@ class CreateSucursalesTable extends Migration
         Schema::create('sucursales', function (Blueprint $table) {
             $table->id();
             $table->string('direccion', 150);
-            $table->foreignId('tostaduria_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tostaduria_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('ciudad_cp');
-            $table->foreign('ciudad_cp')->references('cod_postal')->on('ciudades')->onDelete('cascade');            
+            $table->foreign('ciudad_cp')->references('cod_postal')->on('ciudades')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

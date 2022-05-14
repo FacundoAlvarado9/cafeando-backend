@@ -48,13 +48,13 @@
 
   <div class="row">
     @foreach($tostaduria->sucursales as $sucursal)
-    <x-sucursal.card :sucursal="$sucursal"/>
+    <x-sucursal.card :sucursal="$sucursal" tostaduria_id="$tostaduria->id"/>
     @endforeach
   </div>
 
   <div class="row">
     <div class="col">
-      <a class="btn btn-info" href="{{ route('sucursales.create') }}" role="button">Agregar sucursal</a>
+      <a class="btn btn-info" href="{{ route('tostadurias.sucursales.create', $tostaduria->id) }}" role="button">Agregar sucursal</a>
     </div>
   </div>
 
