@@ -12,7 +12,11 @@
     @endforeach
   </div>
 
-  @error('origenes', 'origenes.*')
+  @error('origenes')
+  <p class="error-message">{{ $message }}</p>
+  @enderror
+
+  @error('origenes.*')
   <p class="error-message">{{ $message }}</p>
   @enderror
 </div>
