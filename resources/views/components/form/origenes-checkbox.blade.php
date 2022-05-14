@@ -16,7 +16,7 @@
     @endforeach
   </div>
 
-  @error('origenes')
+  @error('origenes', 'origenes.*')
   <p class="error-message">{{ $message }}</p>
   @enderror
 </div>
