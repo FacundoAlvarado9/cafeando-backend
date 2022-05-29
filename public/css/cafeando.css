@@ -12,7 +12,7 @@
 }
 
 .navbar-brand{
-    font-family: 'DM Serif Display', serif;    
+    font-family: 'DM Serif Display', serif;
 }
 
 .card {
@@ -28,4 +28,8 @@
 
 .btn{
     margin: 0.2em;
+}
+
+.error-message{
+  color: red;
 }

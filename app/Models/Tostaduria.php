@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Tostaduria extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     protected $table = 'tostadurias';
     public $timestamps = false;
 

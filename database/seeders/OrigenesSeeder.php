@@ -16,36 +16,36 @@ class OrigenesSeeder extends Seeder
     {
         DB::table('origenes')->insert([
             [
-                'id' => 1,
+                //'id' => 1,
                 'nombre'=>'Brasil',
                 'descripcion' => 'Grandes cafeteros los brasileños'
             ],
             [
-                'id' => 2,
+                //'id' => 2,
                 'nombre'=>'Colombia',
                 'descripcion' => 'De las tierras de Shakira'
             ],
             [
-                'id' => 3,
-                'nombre'=>'Papua Nueva Guinea',               
+                //'id' => 3,
+                'nombre'=>'Papua Nueva Guinea',
                 'descripcion' => 'Del interesante país oceánico'
             ],
             [
-                'id' => 4,
-                'nombre'=>'Kenya',               
+                //'id' => 4,
+                'nombre'=>'Kenya',
                 'descripcion' => 'Africa produce mucho café'
-            ],        
+            ],
             [
-                'id' => 5,
-                'nombre'=>'México',               
+                //'id' => 5,
+                'nombre'=>'México',
                 'descripcion' => 'Mariachis y una taza de café'
             ],
             [
-                'id' => 6,
-                'nombre'=>'Vietnam',               
+                //'id' => 6,
+                'nombre'=>'Vietnam',
                 'descripcion' => '*suena Fortunate Son de Creedence de fondo*'
             ],
-            
+
         ]);
     }
 }

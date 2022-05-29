@@ -4,7 +4,13 @@
   <div class="card-body">
     <a href="{{ route('origenes.show', $origen->id) }}" class="card-title">{{ $origen->nombre }}</a>
     <p class="card-text">{{$origen->descripcion}}</p>
-    <a href="#" class="btn btn-warning disabled">Editar</a>
-    <a href="#" class="btn btn-danger disabled">Eliminar</a>
+    <div class="row">
+      <div class="col-4 col-md-2 col-lg-1">
+        <x-boton-editar :rutaEdit="route('origenes.edit', $origen->id)" />
+      </div>
+      <div class="col-4 col-md-2 col-lg-1">
+        <x-form.boton-eliminar :action="route('origenes.destroy', $origen->id)" idModal="{{ $origen->id }}" mensaje="Eliminarás el origen y todas las variedades asociadas."/>
+      </div>
+    </div>
   </div>
 </div>

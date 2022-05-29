@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Variedad;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\StoreUpdateVariedadRequest;
+use Illuminate\Support\Facades\Storage;
 
 class VariedadController extends Controller
 {
@@ -27,7 +30,7 @@ class VariedadController extends Controller
      */
     public function create()
     {
-        //
+        return view('variedad.create');
     }
 
     /**
@@ -36,9 +39,25 @@ class VariedadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateVariedadRequest $request)
     {
-        //
+
+      $atributos = $request->safe()->except(['origenes', 'origenes.*']);
+      $origenesArreglo = $request->safe()->only(['origenes']);
+
+      if(isset($atributos['imagen'])){ //No es requerido
+        $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
+        $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
+
+        //Me quedo con ambas
+        $atributos['imagen'] = $pathImagen;
+        $atributos['imagen_url'] = $urlImagen;
+      }
+
+      $nuevaVariedad = Variedad::create($atributos);
+      $nuevaVariedad->origenes()->attach($origenesArreglo["origenes"]);
+
+      return Redirect::route('variedades.show', $nuevaVariedad->id)->with('status', 'Variedad creada con éxito');
     }
 
     /**
@@ -61,7 +80,7 @@ class VariedadController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('variedad.edit', ['variedad' => Variedad::findOrFail($id)]);
     }
 
     /**
@@ -71,9 +90,26 @@ class VariedadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateVariedadRequest $request, $id)
     {
-        //
+      $atributos = $request->safe()->except(['origenes', 'origenes.*']);
+      $nuevosOrigenes = $request->safe()->only(['origenes']);
+
+      if(isset($atributos['imagen'])){
+        $pathImagen = Storage::putFile('variedades', $request->file('imagen')); //Path dentro del filesystem Laravel
+        $urlImagen = Storage::url($pathImagen); //Le pedimos la url "cruda" al bucket s3
+
+        //Me quedo con ambas
+        $atributos['imagen'] = $pathImagen;
+        $atributos['imagen_url'] = $urlImagen;
+      }
+
+      $variedadAEditar = Variedad::findOrFail($id);
+      $variedadAEditar->update($atributos);
+
+      $variedadAEditar->origenes()->sync($nuevosOrigenes["origenes"]);
+
+      return Redirect::route('variedades.show', $variedadAEditar->id)->with('status', 'Variedad editada con éxito');
     }
 
     /**
@@ -84,6 +120,16 @@ class VariedadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $variedadAEliminar = Variedad::findOrFail($id);
+
+        $variedadAEliminar->origenes()->detach();
+
+        if(isset($variedadAEliminar->imagen)){ //Las imagenes de variedades cargadas con seed no tendrán asociado path en el filesystem Laravel
+          Storage::delete($variedadAEliminar->imagen);
+        }
+
+        $variedadAEliminar->delete();
+
+        return Redirect::route('variedades.index')->with('status', 'Variedad'.$variedadAEliminar->nombre.' eliminada con éxito');
     }
 }

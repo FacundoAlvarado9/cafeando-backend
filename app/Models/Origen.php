@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Origen extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     protected $table = 'origenes';
     public $timestamps = false;
 

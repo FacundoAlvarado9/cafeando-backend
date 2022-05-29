@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VariedadController;
 use App\Http\Controllers\TostaduriaController;
+use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\OrigenController;
 
 /*
@@ -27,6 +29,8 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
   Route::resource('variedades', VariedadController::class);
   Route::resource('tostadurias', TostaduriaController::class);
+  Route::resource('tostadurias.sucursales', SucursalController::class)->except(['index', 'show'])->shallow();
+  Route::resource('ciudades', CiudadController::class)->except(['show']);
   Route::resource('origenes', OrigenController::class);
 });
 

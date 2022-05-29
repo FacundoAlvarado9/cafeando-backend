@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tostaduria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 
 class TostaduriaController extends Controller
 {
@@ -27,7 +29,7 @@ class TostaduriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tostaduria.create');
     }
 
     /**
@@ -38,7 +40,13 @@ class TostaduriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $atributos = request()->validate([
+          'nombre' => ['required', Rule::unique('tostadurias', 'nombre')]
+        ]);
+
+        $nuevaTostaduria = Tostaduria::create($atributos);
+
+        return Redirect::route('tostadurias.show', $nuevaTostaduria->id)->with('status', 'Tostaduria creada con éxito');
     }
 
     /**
@@ -61,7 +69,7 @@ class TostaduriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('tostaduria.edit', ['tostaduria' => Tostaduria::findOrFail($id)]);
     }
 
     /**
@@ -73,7 +81,15 @@ class TostaduriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $atributos = request()->validate([
+          'nombre' => ['required', Rule::unique('tostadurias', 'nombre')->ignore($id)]
+        ]);
+
+        $tostaduriaAEditar = Tostaduria::findOrFail($id);
+
+        $tostaduriaAEditar->update($atributos);
+
+        return Redirect::route('tostadurias.show', $tostaduriaAEditar->id)->with('status', 'Tostaduria editada con éxito');
     }
 
     /**
@@ -84,6 +100,10 @@ class TostaduriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tostaduriaAEliminar = Tostaduria::findOrFail($id);
+
+        $tostaduriaAEliminar->delete();
+
+        return Redirect::route('tostadurias.index')->with('status', 'Tostaduria '.$tostaduriaAEliminar->nombre.' eliminada con éxito');
     }
 }

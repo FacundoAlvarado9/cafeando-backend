@@ -14,11 +14,12 @@ class CreateVariedadOrigenTable extends Migration
     public function up()
     {
         Schema::create('variedad_origen', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('variedad_id')->index();
-            $table->foreign('variedad_id')->references('id')->on('variedades')->onDelete('cascade');
+            $table->foreign('variedad_id')->references('id')->on('variedades')->onDelete('cascade')->onUpdate('cascade');
 
             $table->unsignedBigInteger('origen_id')->index();
-            $table->foreign('origen_id')->references('id')->on('origenes')->onDelete('cascade');
+            $table->foreign('origen_id')->references('id')->on('origenes')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -21,8 +21,14 @@
       <h2>{{ $origen->nombre }}</h2>
     </div>
     <div class="col">
-      <a href="#" class="btn btn-warning disabled">Editar</a>
-      <a href="#" class="btn btn-danger disabled">Eliminar</a>
+      <div class="row">
+        <div class="col-2 col-md-3 col-lg-2">
+          <x-boton-editar :rutaEdit="route('origenes.edit', $origen->id)" />
+        </div>
+        <div class="col-2 col-md-3 col-lg-2">
+          <x-form.boton-eliminar :action="route('origenes.destroy', $origen->id)"/>
+        </div>        
+      </div>
     </div>
   </div>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Origen;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Redirect;
 
 class OrigenController extends Controller
 {
@@ -27,7 +29,7 @@ class OrigenController extends Controller
      */
     public function create()
     {
-        //
+        return view('origen.create');
     }
 
     /**
@@ -38,7 +40,14 @@ class OrigenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $atributos = request()->validate([
+          'nombre' => ['required', Rule::unique('origenes', 'nombre')],
+          'descripcion' => 'required'
+        ]);
+
+        $nuevoOrigen = Origen::create($atributos);
+
+        return Redirect::route('origenes.index')->with('status', 'Origen '.$nuevoOrigen->nombre.' creado con éxito');
     }
 
     /**
@@ -61,7 +70,7 @@ class OrigenController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('origen.edit', ['origen' => Origen::findOrFail($id)]);
     }
 
     /**
@@ -73,7 +82,16 @@ class OrigenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $atributos = request()->validate([
+        'nombre' => ['required', Rule::unique('origenes', 'nombre')->ignore($id)],
+        'descripcion' => 'required'
+      ]);
+
+      $origenAEditar = Origen::findOrFail($id);
+
+      $origenAEditar->update($atributos);
+
+      return Redirect::route('origenes.index')->with('status', 'Origen '.$origenAEditar->nombre.' editado con éxito');
     }
 
     /**
@@ -84,6 +102,11 @@ class OrigenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $origenAEliminar = Origen::findOrFail($id);
+
+        $origenAEliminar->variedades()->delete(); //Elimina las variedades asociadas también
+        $origenAEliminar->delete();
+
+        return Redirect::route('origenes.index')->with('status', 'Origen '.$origenAEliminar->nombre.' eliminado con éxito');
     }
 }

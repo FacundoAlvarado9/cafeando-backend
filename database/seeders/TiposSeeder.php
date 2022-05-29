@@ -16,11 +16,11 @@ class TiposSeeder extends Seeder
     {
         DB::table('tipos')->insert([
             [
-                'id'=>1,
+                //'id'=>1,
                 'nombre'=>'De Origen'
             ],
             [
-                'id'=>2,
+                //'id'=>2,
                 'nombre'=>'Blend'
             ]
         ]);
