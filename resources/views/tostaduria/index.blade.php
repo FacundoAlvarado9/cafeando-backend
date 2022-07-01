@@ -26,6 +26,10 @@
   <div class="row row-cols-auto">
 
     <div class="col">
+      <a class="btn btn-info" href="{{ route('tostadurias.create') }}" role="button">Agregar tostaduria</a>
+    </div>
+
+    <div class="col">
       <x-tostaduria.filter-ciudad-dropdown/>
     </div>
 
@@ -40,12 +44,6 @@
     @foreach($tostadurias as $tost)
     <x-tostaduria.item :tostaduria="$tost"/>
     @endforeach
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <a class="btn btn-info" href="{{ route('tostadurias.create') }}" role="button">Agregar tostaduria</a>
   </div>
 </div>
 

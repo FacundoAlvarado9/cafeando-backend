@@ -6,6 +6,11 @@
 <div class="container">
   <div class="row">
 
+    <div class="col">
+      <a class="btn btn-info" href="{{ route('ciudades.create') }}" role="button">Agregar ciudad</a>
+    </div>
+
+
     <div class="col buscar ">
       <form action="" method="get">
 
@@ -23,12 +28,6 @@
     @foreach($ciudades as $ciudad)
     <x-ciudad.item :ciudad="$ciudad"/>
     @endforeach
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <a class="btn btn-info" href="{{ route('ciudades.create') }}" role="button">Agregar ciudad</a>
   </div>
 </div>
 
