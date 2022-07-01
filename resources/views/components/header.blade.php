@@ -21,7 +21,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: contents;">
         <li class="nav-item" style="margin-right: 1em;">
           <a style="color:white;">Logueado como: <i>{{ Auth::user()->name }}</i> </a>
         </li>
