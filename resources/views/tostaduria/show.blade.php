@@ -17,6 +17,10 @@
     <div class="col">
       <div class="row">
 
+      <div class="col-sm-4 col-lg-2">
+        <a class="btn btn-info" href="{{ route('tostadurias.sucursales.create', $tostaduria->id) }}" role="button">Agregar sucursal</a>
+      </div>
+
         <div class="col-sm-4 col-md-2">
           <x-boton-editar rutaEdit="{{ route('tostadurias.edit', $tostaduria->id) }}" />
         </div>
@@ -45,8 +49,8 @@
   </div>
 
   <div class="row">
-    <div class="col">
-      <a class="btn btn-info" href="{{ route('tostadurias.sucursales.create', $tostaduria->id) }}" role="button">Agregar sucursal</a>
+  <div class="col">
+      <a class="btn btn-primary" href="{{ url()->previous() }}" role="button">Volver</a>
     </div>
   </div>
 
