@@ -16,7 +16,7 @@ class CiudadController extends Controller
      */
     public function index()
     {
-      $ciudades = Ciudad::filter(request(['search']))->paginate(3)->withQueryString();
+      $ciudades = Ciudad::filter(request(['search']))->paginate(10)->withQueryString();
       return view('ciudad.index', [
           'ciudades'=>$ciudades
       ]);

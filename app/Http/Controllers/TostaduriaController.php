@@ -16,7 +16,7 @@ class TostaduriaController extends Controller
      */
     public function index()
     {
-        $tostadurias = Tostaduria::filter(request(['search', 'presente-en']))->paginate(3)->withQueryString();
+        $tostadurias = Tostaduria::filter(request(['search', 'presente-en']))->paginate(10)->withQueryString();
         return view('tostaduria.index', [
             'tostadurias'=>$tostadurias
         ]);

@@ -16,7 +16,7 @@ class OrigenController extends Controller
      */
     public function index()
     {
-      $origenes = Origen::filter(request(['search']))->paginate(3)->withQueryString();
+      $origenes = Origen::filter(request(['search']))->paginate(10)->withQueryString();
       return view('origen.index', [
           'origenes'=>$origenes
       ]);
