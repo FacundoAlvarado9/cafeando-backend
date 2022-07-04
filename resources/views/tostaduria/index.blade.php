@@ -5,15 +5,7 @@
 
 <div class="container">
   <div class="row">
-
-    <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Tostadurías</li>
-          </ol>
-        </nav>
-    </div>
-
+    
     <div class="col buscar ">
       <form action="" method="get">
 
@@ -34,6 +26,10 @@
   <div class="row row-cols-auto">
 
     <div class="col">
+      <a class="btn btn-info" href="{{ route('tostadurias.create') }}" role="button">Agregar tostaduria</a>
+    </div>
+
+    <div class="col">
       <x-tostaduria.filter-ciudad-dropdown/>
     </div>
 
@@ -48,12 +44,6 @@
     @foreach($tostadurias as $tost)
     <x-tostaduria.item :tostaduria="$tost"/>
     @endforeach
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <a class="btn btn-info" href="{{ route('tostadurias.create') }}" role="button">Agregar tostaduria</a>
   </div>
 </div>
 

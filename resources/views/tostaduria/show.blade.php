@@ -5,14 +5,6 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('tostadurias.index') }}">Tostadurias</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{$tostaduria->nombre}}</li>
-          </ol>
-        </nav>
-    </div>
 
 <x-status-message />
 
@@ -24,6 +16,10 @@
     </div>
     <div class="col">
       <div class="row">
+
+      <div class="col-sm-4 col-lg-2">
+        <a class="btn btn-info" href="{{ route('tostadurias.sucursales.create', $tostaduria->id) }}" role="button">Agregar sucursal</a>
+      </div>
 
         <div class="col-sm-4 col-md-2">
           <x-boton-editar rutaEdit="{{ route('tostadurias.edit', $tostaduria->id) }}" />
@@ -53,8 +49,8 @@
   </div>
 
   <div class="row">
-    <div class="col">
-      <a class="btn btn-info" href="{{ route('tostadurias.sucursales.create', $tostaduria->id) }}" role="button">Agregar sucursal</a>
+  <div class="col">
+      <a class="btn btn-primary" href="{{ url()->previous() }}" role="button">Volver</a>
     </div>
   </div>
 

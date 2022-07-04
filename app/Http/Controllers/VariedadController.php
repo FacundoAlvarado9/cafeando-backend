@@ -17,7 +17,7 @@ class VariedadController extends Controller
      */
     public function index()
     {
-        $variedades = Variedad::filter(request(['search','tipo', 'origen', 'tostaduria']))->paginate(3)->withQueryString();
+        $variedades = Variedad::filter(request(['search','tipo', 'origen', 'tostaduria']))->paginate(10)->withQueryString();
         return view('variedad.index', [
             'variedades'=>$variedades
         ]);

@@ -2,13 +2,6 @@
 
 @section('content')
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ route('variedades.index') }}">Variedades</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ $variedad->nombre }}</li>
-  </ol>
-</nav>
-
 <x-status-message />
 
 <div class="container">

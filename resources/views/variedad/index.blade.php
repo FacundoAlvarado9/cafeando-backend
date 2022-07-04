@@ -4,14 +4,7 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Variedades</li>
-          </ol>
-        </nav>
-    </div>
+  <div class="row">    
 
     <div class="col buscar ">
       <form action="" method="get">
@@ -34,6 +27,10 @@
 
 <div class="container">
   <div class="row row-cols-auto">
+
+    <div class="col">
+      <a class="btn btn-info" href="{{ route('variedades.create') }}" role="button">Agregar variedad</a>
+    </div>
 
     <div class="col">
       <x-variedad.filter-tipo-dropdown/>
@@ -62,12 +59,6 @@
         <x-variedad.card :variedad="$variedad"/>
         @endforeach
     </div>
-</div>
-
-<div class="row" style="margin-bottom: 1em;">
-  <div class="col">
-    <a class="btn btn-info" href="{{ route('variedades.create') }}" role="button">Agregar variedad</a>
-  </div>
 </div>
 
 {{ $variedades->links() }}

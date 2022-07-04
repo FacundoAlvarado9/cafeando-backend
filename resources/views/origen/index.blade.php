@@ -6,11 +6,7 @@
   <div class="row">
 
     <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Orígenes</li>
-          </ol>
-        </nav>
+      <a class="btn btn-info" href="{{ route('origenes.create') }}" role="button">Agregar origen</a>
     </div>
 
     <div class="col buscar ">
@@ -28,12 +24,6 @@
       @foreach($origenes as $origen)
       <x-origen.item :origen="$origen"/>
       @endforeach
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <a class="btn btn-info" href="{{ route('origenes.create') }}" role="button">Agregar origen</a>
     </div>
   </div>
 
