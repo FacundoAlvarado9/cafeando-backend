@@ -1,8 +1,8 @@
 # Cafeando-backend
 ## Cafeando Project
 This is the backend part of the Cafeando Project made for the Web Appliactions course at my uni in Argentina. You can also find:
-- [Frontend repo](https://github.com/FacundoAlvarado9/Cafeando-front-deploy)
-- [RestAPI repo](https://github.com/FacundoAlvarado9/cafeando-api)
+- [Frontend repo](https://github.com/FacundoAlvarado9/Cafeando-front-deploy) + [Frontend live demo](https://cafeando-front-deploy.vercel.app/)
+- [RestAPI repo](https://github.com/FacundoAlvarado9/cafeando-api) + [RestAPI live demo](https://cafeando-api.herokuapp.com)
 
 ## Technologies
 - Main framework: Laravel (version 8)
