@@ -12,3 +12,6 @@ This is the backend part of the Cafeando Project made for the Web Appliactions c
 
 ## Spirit of the project
 This project was developed for the Web Applications course at my Uni in Argentina. Main focus was put on many principles, such as "not reinventing the wheel". We (students) were expected to prioritize the use of libraries rather than developing components from zero.
+
+## Current status
+Doing some maintenance on this development branch. Will be updating the repo with details. On the meanwhile, some info on this maintenance can be found on each commit.
